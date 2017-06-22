@@ -222,7 +222,7 @@ GM = GameMode()
 print()
 
 try:
-    if(GM != PVP)
+    if GM != PVP:
         aiDepth = askForDepthOfAI()
     
 
