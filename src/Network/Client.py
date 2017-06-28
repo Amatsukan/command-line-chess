@@ -2,19 +2,18 @@
 
 import socket
 
-s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-host = socket.gethostname()
-port =8000
-s.connect((host,port))
+class Client:
+	def __init__(self, host, port = 8000):
+		self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+		self.host = host
+		self.port = port
+		self.socket.connect((self.host,self.port))
 
-def ts(str):
-   s.send('e'.encode()) 
-   data = ''
-   data = s.recv(1024).decode()
-   print (data)
+	def send(self, str):
+	   self.socket.send(str.encode())
 
-while 2:
-   r = input('enter')
-   ts(s)
+	def receive(self):
+	   return self.socket.recv(1024).decode()
 
-s.close ()
+	def close_conection(self):
+		self.socket.close()
